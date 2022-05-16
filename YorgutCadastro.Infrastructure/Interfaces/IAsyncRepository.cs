@@ -10,8 +10,6 @@ namespace YorgutCadastro.Infrastructure.Interfaces
 
         Task InsertYorgut(T usuario);
 
-        Task<T> LoginYorgut(T usuario);
-
         Task Delete();
     }
 }

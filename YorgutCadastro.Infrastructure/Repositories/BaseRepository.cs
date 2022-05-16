@@ -9,9 +9,9 @@ using YorgutCadastro.Infrastructure.Interfaces;
 
 namespace YorgutCadastro.Infrastructure.Repositories
 {
-    public class BaseRepository<T> :  IAsyncRepository<T> where T : YorgutCadastroEntity
+    public class BaseRepository<T> :  IAsyncRepository<T> where T : BaseEntity
     {
-        private readonly YorgutCadastroContext _context;
+        protected readonly YorgutCadastroContext _context;
 
         public BaseRepository(YorgutCadastroContext context)
         {
@@ -28,12 +28,6 @@ namespace YorgutCadastro.Infrastructure.Repositories
             await _context.Set<T>().AddAsync(usuario);
             await _context.SaveChangesAsync();
         }
-
-        public async Task<T> LoginYorgut(T usuario)
-        {
-            return await _context.Set<T>().FirstOrDefaultAsync(x => x.Username == usuario.Username && x.Password == usuario.Password);
-        }
-
 
         public async Task Delete()
         {
